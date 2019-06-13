@@ -1,0 +1,3 @@
+[submodule "external/multidim"]
+	path = external/multidim
+	url = https://github.com/AlbertoMarnetto/multidim.git
