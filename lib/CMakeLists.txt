@@ -35,6 +35,7 @@ target_link_libraries(
   PRIVATE
   lib::lib
   Boost::unit_test_framework
+  multidim::lib
 )
 
 add_test(
