@@ -2,6 +2,7 @@
 #include <boost/test/unit_test.hpp>
 #include <iterator>
 #include <multidim.hpp>
+#include <type_traits>
 #include <vector>
 
 namespace
@@ -57,6 +58,16 @@ BOOST_AUTO_TEST_CASE(scalarSize)
   BOOST_TEST(multidim::scalarSize(oneDim) == 3u);
   BOOST_TEST(multidim::scalarSize(twoDim) == 9u);
   BOOST_TEST(multidim::scalarSize(threeDim) == 18u);
+}
+
+BOOST_AUTO_TEST_CASE(scalarType)
+{
+  static_assert(
+    std::is_same<decltype(multidim::scalarType(oneDim)), int>::value, "");
+  static_assert(
+    std::is_same<decltype(multidim::scalarType(twoDim)), int>::value, "");
+  static_assert(
+    std::is_same<decltype(multidim::scalarType(threeDim)), int>::value, "");
 }
 
 BOOST_AUTO_TEST_CASE(flat_view)
