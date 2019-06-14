@@ -25,6 +25,28 @@ const std::vector<int> threeDimFlat{
 };
 
 BOOST_AUTO_TEST_CASE(dimensionality)
+BOOST_AUTO_TEST_CASE(bounds)
+{
+  {
+    const auto& bounds{ multidim::bounds(oneDim) };
+    const auto& expected{ std::vector<size_t>{ 3 } };
+    BOOST_CHECK_EQUAL_COLLECTIONS(
+      begin(bounds), end(bounds), begin(expected), end(expected));
+  }
+  {
+    const auto& bounds{ multidim::bounds(twoDim) };
+    const auto& expected{ std::vector<size_t>{ 3, 3 } };
+    BOOST_CHECK_EQUAL_COLLECTIONS(
+      begin(bounds), end(bounds), begin(expected), end(expected));
+  }
+  {
+    const auto& bounds{ multidim::bounds(threeDim) };
+    const auto& expected{ std::vector<size_t>{ 3, 2, 3 } };
+    BOOST_CHECK_EQUAL_COLLECTIONS(
+      begin(bounds), end(bounds), begin(expected), end(expected));
+  }
+}
+
 BOOST_AUTO_TEST_CASE(flat_view)
 {
   {
