@@ -5,6 +5,8 @@
 #include <vector>
 
 BOOST_AUTO_TEST_CASE(multidim_flat_view)
+BOOST_AUTO_TEST_SUITE(multidim_lib)
+
 const std::vector<int> oneDim{ { 1, 22, 333 } };
 const std::vector<int> oneDimFlat{ { 1, 22, 333 } };
 const std::vector<std::vector<int>> twoDim{ { 1, 22, 333 },
@@ -39,3 +41,5 @@ BOOST_AUTO_TEST_CASE(flat_view)
       begin(threeDimFlat), end(threeDimFlat), begin(flatView), end(flatView)));
   }
 }
+
+BOOST_AUTO_TEST_SUITE_END()
