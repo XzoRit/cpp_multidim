@@ -4,7 +4,6 @@
 #include <multidim.hpp>
 #include <vector>
 
-BOOST_AUTO_TEST_CASE(multidim_flat_view)
 namespace
 {
 BOOST_AUTO_TEST_SUITE(multidim_lib)
@@ -25,6 +24,12 @@ const std::vector<int> threeDimFlat{
 };
 
 BOOST_AUTO_TEST_CASE(dimensionality)
+{
+  BOOST_TEST(multidim::dimensionality(oneDim) == 1u);
+  BOOST_TEST(multidim::dimensionality(twoDim) == 2u);
+  BOOST_TEST(multidim::dimensionality(threeDim) == 3u);
+}
+
 BOOST_AUTO_TEST_CASE(bounds)
 {
   {
