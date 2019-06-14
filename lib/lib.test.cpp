@@ -52,6 +52,13 @@ BOOST_AUTO_TEST_CASE(bounds)
   }
 }
 
+BOOST_AUTO_TEST_CASE(scalarSize)
+{
+  BOOST_TEST(multidim::scalarSize(oneDim) == 3u);
+  BOOST_TEST(multidim::scalarSize(twoDim) == 9u);
+  BOOST_TEST(multidim::scalarSize(threeDim) == 18u);
+}
+
 BOOST_AUTO_TEST_CASE(flat_view)
 {
   {
