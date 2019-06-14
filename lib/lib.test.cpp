@@ -5,6 +5,8 @@
 #include <vector>
 
 BOOST_AUTO_TEST_CASE(multidim_flat_view)
+namespace
+{
 BOOST_AUTO_TEST_SUITE(multidim_lib)
 
 const std::vector<int> oneDim{ { 1, 22, 333 } };
@@ -43,3 +45,4 @@ BOOST_AUTO_TEST_CASE(flat_view)
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+}
