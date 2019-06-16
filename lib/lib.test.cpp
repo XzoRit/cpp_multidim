@@ -23,6 +23,11 @@ const std::vector<std::vector<std::vector<int>>> threeDim{
 const std::vector<int> threeDimFlat{
   { 1, 22, 333, 1, 22, 333, 1, 22, 333, 1, 22, 333, 1, 22, 333, 1, 22, 333 }
 };
+std::vector<std::vector<std::vector<int>>> muteableThreeDim{
+  { { 1, 22, 333 }, { 1, 22, 333 } },
+  { { 1, 22, 333 }, { 1, 22, 333 } },
+  { { 1, 22, 333 }, { 1, 22, 333 } }
+};
 
 BOOST_AUTO_TEST_CASE(dimensionality)
 {
@@ -86,6 +91,13 @@ BOOST_AUTO_TEST_CASE(flat_view)
     const auto& flatView{ multidim::makeFlatView(threeDim) };
     BOOST_TEST(std::equal(
       begin(threeDimFlat), end(threeDimFlat), begin(flatView), end(flatView)));
+  }
+  {
+    auto flatView{ multidim::makeFlatView(muteableThreeDim) };
+    flatView[11] = 17;
+    BOOST_TEST(flatView[11] == muteableThreeDim[1][1][2]);
+    muteableThreeDim[1][1][2] = 11;
+    BOOST_TEST(flatView[11] == 11);
   }
 }
 
