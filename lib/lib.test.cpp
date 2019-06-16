@@ -58,14 +58,14 @@ BOOST_AUTO_TEST_CASE(bounds)
   }
 }
 
-BOOST_AUTO_TEST_CASE(scalarSize)
+BOOST_AUTO_TEST_CASE(scalar_size)
 {
   BOOST_TEST(multidim::scalarSize(oneDim) == 3u);
   BOOST_TEST(multidim::scalarSize(twoDim) == 9u);
   BOOST_TEST(multidim::scalarSize(threeDim) == 18u);
 }
 
-BOOST_AUTO_TEST_CASE(scalarType)
+BOOST_AUTO_TEST_CASE(scalar_type)
 {
   static_assert(
     std::is_same<decltype(multidim::scalarType(oneDim)), int>::value, "");
