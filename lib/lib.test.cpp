@@ -104,17 +104,31 @@ BOOST_AUTO_TEST_CASE(flat_view)
 BOOST_AUTO_TEST_CASE(boxed_view)
 {
   const std::vector<std::vector<int>> notBoxed{ { 1 },
-                                              { 1, 22 },
-                                              { 1, 22, 333 } };
+                                                { 1, 22 },
+                                                { 1, 22, 333 } };
   const auto& boxedView{ multidim::makeBoxedView(notBoxed, 0, {}) };
-  auto expectedBoxedView = std::vector<std::vector<int>>{{1,0,0},{1,22,0}, {1,22,333}};
+  const auto& expectedBoxedView{ std::vector<std::vector<int>>{
+    { 1, 0, 0 }, { 1, 22, 0 }, { 1, 22, 333 } } };
+
   const auto& bounds{ multidim::bounds(notBoxed) };
   for (auto i{ 0u }; i < bounds[0]; ++i)
   {
     BOOST_TEST_INFO("index = " << i);
     BOOST_CHECK_EQUAL_COLLECTIONS(
-      begin(boxedView[i]), end(boxedView[i]), begin(expectedBoxedView[i]), end(expectedBoxedView[i]));
+      begin(boxedView[i]),
+      end(boxedView[i]),
+      begin(expectedBoxedView[i]),
+      end(expectedBoxedView[i]));
   }
+
+  const auto& flatBoxedView{ multidim::makeFlatView(boxedView) };
+  const auto& expectedFlatBoxedView{ std::vector<int>{
+    { 1, 0, 0, 1, 22, 0, 1, 22, 333 } } };
+  BOOST_CHECK_EQUAL_COLLECTIONS(
+    begin(flatBoxedView),
+    end(flatBoxedView),
+    begin(expectedFlatBoxedView),
+    end(expectedFlatBoxedView));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
